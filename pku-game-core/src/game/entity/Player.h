@@ -6,7 +6,9 @@
 #define PKU_GAME_CORE_PLAYER_H
 
 
-class Player
+#include "Entity.h"
+
+class Player : public Entity
 {
 
 };

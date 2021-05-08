@@ -16,13 +16,15 @@ MainApplication::MainApplication()
     gameClient = new GameClient(*this);
     renderEngine = new RenderEngine(*this);
     keyEventListener = new KeyEventListener(*this);
-    mouseListener = new MouseListener(this);
+    mouseListener = new MouseListener(*this);
 }
 
 MainApplication::~MainApplication()
 {
     delete gameClient;
     delete renderEngine;
+    delete keyEventListener;
+    delete mouseListener;
 }
 
 void MainApplication::main()
