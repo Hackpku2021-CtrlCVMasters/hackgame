@@ -1,11 +1,7 @@
 #ifndef __SNAKE__
 #define __SNAKE__
 
-#include "../include/raylib.h"
-
-#if defined(PLATFORM_WEB)
-    #include <emscripten/emscripten.h>
-#endif
+#include "raylib.h"
 
 #define SNAKE_LENGTH   256
 #define SQUARE_SIZE     31
