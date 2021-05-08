@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(pku_game_core)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 add_executable(pku_game_core src/game.h src/init.cc src/render.cc src/update.cc src/game.cc)
 
