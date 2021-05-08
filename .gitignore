@@ -13,3 +13,6 @@ build
 .root
 .cache
 .vscode
+.idea
+cmake-build-debug
+
