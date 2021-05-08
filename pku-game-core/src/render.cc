@@ -1,7 +1,7 @@
 #include "game.h"
 
 //Draw game per frame...
-void Game::DrawGame(void)
+void Game::DrawGame()
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
