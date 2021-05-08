@@ -3,6 +3,8 @@
 #include "MainApplication.h"
 #include "game/GameClient.h"
 #include "renderer/RenderEngine.h"
+#include "MouseListener.h"
+#include "KeyEventListener.h"
 
 #include <thread>
 
@@ -13,6 +15,8 @@ MainApplication::MainApplication()
     windowName = "Demo Hack pku game";
     gameClient = new GameClient(*this);
     renderEngine = new RenderEngine(*this);
+    keyEventListener = new KeyEventListener(*this);
+    mouseListener = new MouseListener(this);
 }
 
 MainApplication::~MainApplication()
@@ -31,7 +35,9 @@ void MainApplication::main()
     std::thread([this](){
         while(!WindowShouldClose())
         {
-            gameClient->tick();
+            logicMutex.lock();
+            logicTick();
+            logicMutex.unlock();
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
     }).detach();
@@ -40,7 +46,9 @@ void MainApplication::main()
     SetTargetFPS(60);
     while (!WindowShouldClose())
     {
+        logicMutex.lock();
         renderTick();
+        logicMutex.unlock();
     }
 
     CloseWindow();

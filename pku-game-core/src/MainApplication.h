@@ -6,11 +6,15 @@
 
 class GameClient;
 class RenderEngine;
+class KeyEventListener;
+class MouseListener;
 class MainApplication
 {
 private:
     GameClient* gameClient;
     RenderEngine* renderEngine;
+    KeyEventListener* keyEventListener;
+    MouseListener* mouseListener;
     int screenWidth;
     int screenHeight;
     std::string windowName;

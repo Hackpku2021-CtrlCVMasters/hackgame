@@ -6,9 +6,28 @@
 #define PKU_GAME_CORE_MOUSELISTENER_H
 
 
+class MainApplication;
 class MouseListener
 {
+private:
+    MainApplication* app;
+public:
+    explicit MouseListener(MainApplication&);
+    ~MouseListener();
 
+    int getMouseX() const;
+    int getMouseY() const;
+    int getMouseOffsetX() const;
+    int getMouseOffsetY() const;
+    void showCursor();
+    void hideCursor();
+    void enableCursor();
+    void disableCursor();
+    bool isCursorHidden() const;
+
+    bool isMouseLeftPressed() const;
+    bool isMouseRightPressed() const;
+    bool isMouseMiddlePressed() const;
 };
 
 
