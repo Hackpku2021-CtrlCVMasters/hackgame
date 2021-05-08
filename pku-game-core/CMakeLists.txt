@@ -11,16 +11,35 @@ target_include_directories(pku_game_core
         ${PROJECT_SOURCE_DIR}/include
         ${PROJECT_SOURCE_DIR}/src)
 
-target_link_directories(
-        pku_game_core
-        PRIVATE
-        ${CMAKE_SYSTEM_LIBRARY_PATH}
-)
+if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    target_link_directories(
+            pku_game_core
+            PRIVATE
+            ${CMAKE_SYSTEM_LIBRARY_PATH}
+            ${PROJECT_SOURCE_DIR}/lib
+    )
 
-target_link_libraries(
-        pku_game_core
-        PRIVATE
-        GL
-        pthread
-        raylib
-)
+    target_link_libraries(
+            pku_game_core
+            PRIVATE
+            pthread
+            raylib
+            winmm
+    )
+else()
+    target_link_directories(
+            pku_game_core
+            PRIVATE
+            ${CMAKE_SYSTEM_LIBRARY_PATH}
+    )
+
+    target_link_libraries(
+            pku_game_core
+            PRIVATE
+            GL
+            pthread
+            raylib
+    )
+endif()
+
+
