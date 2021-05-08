@@ -7,7 +7,9 @@ add_executable(pku_game_core src/game.h src/init.cc src/render.cc src/update.cc 
 
 target_include_directories(pku_game_core
         PRIVATE
-        ${CMAKE_SYSTEM_INCLUDE_PATH})
+        ${CMAKE_SYSTEM_INCLUDE_PATH}
+        ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/src)
 
 target_link_directories(
         pku_game_core

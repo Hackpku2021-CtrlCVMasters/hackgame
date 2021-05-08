@@ -1,7 +1,7 @@
 #ifndef __SNAKE__
 #define __SNAKE__
 
-#include "raylib.h"
+#include "../include/raylib.h"
 
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
