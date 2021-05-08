@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(Boost)
 
-add_executable(pku_game_core src/game.h src/init.cc src/render.cc src/update.cc src/game.cc src/MainApplication.cpp src/MainApplication.h src/game/GameClient.cpp src/game/GameClient.h src/renderer/RenderEngine.cpp src/renderer/RenderEngine.h src/game/world/World.cpp src/game/world/World.h src/game/entity/Entity.cpp src/game/entity/Entity.h src/game/entity/Player.cpp src/game/entity/Player.h src/game/tile/Tile.cpp src/game/tile/Tile.h src/util/AABB.h src/util/AABB.cpp src/util/Vec2.cpp src/util/Vec2.h src/util/Vec3.cpp src/util/Vec3.h)
+add_executable(pku_game_core src/game.h src/init.cc src/render.cc src/update.cc src/game.cc src/MainApplication.cpp src/MainApplication.h src/game/GameClient.cpp src/game/GameClient.h src/renderer/RenderEngine.cpp src/renderer/RenderEngine.h src/game/world/World.cpp src/game/world/World.h src/game/entity/Entity.cpp src/game/entity/Entity.h src/game/entity/Player.cpp src/game/entity/Player.h src/game/tile/Tile.cpp src/game/tile/Tile.h src/util/AABB.h src/util/AABB.cpp src/util/Vec2.cpp src/util/Vec2.h src/util/Vec3.cpp src/util/Vec3.h src/renderer/BlockRenderer.cpp src/renderer/BlockRenderer.h src/renderer/EntityRenderer.cpp src/renderer/EntityRenderer.h src/renderer/BaseRenderer.cpp src/renderer/BaseRenderer.h src/KeyEventListener.cpp src/KeyEventListener.h src/MouseListener.cpp src/MouseListener.h)
 
 if(Boost_FOUND)
     target_include_directories(pku_game_core PRIVATE
