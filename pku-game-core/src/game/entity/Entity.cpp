@@ -4,6 +4,9 @@
 
 #include "Entity.h"
 
+#include "game/world/World.h"
+#include "game/block/Block.h"
+
 void Entity::tick()
 {
 
@@ -11,7 +14,7 @@ void Entity::tick()
 
 Entity::Entity(World & world):world(&world)
 {
-
+    aabb = AABB();
 }
 
 Entity::~Entity()
@@ -32,4 +35,30 @@ World &Entity::getWorld() const
 void Entity::move(const Vec3f & v)
 {
     position += v;
+}
+
+const std::optional<AABB> &Entity::getAABB() const
+{
+    return aabb;
+}
+
+bool Entity::collideWithBlocks(Vec3f const& offset) const
+{
+    if(aabb.has_value())
+    {
+        auto const& blocks = world->getBlocks();
+        auto thisAABB = *aabb;
+        thisAABB.move(position + offset);
+        for(auto const& block : blocks)
+        {
+            if(block.second == nullptr)
+                continue;
+            auto const& blockAABB = block.second->getAABB();
+            if(thisAABB.collideWith(blockAABB, {(float)block.first.x, (float) block.first.y, (float)block.first.z}))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }

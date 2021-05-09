@@ -27,6 +27,8 @@ float Player::getPitch() const
 Player::Player(World & world) : Entity(world){
     yaw = 0.;
     pitch = 0.;
+
+    aabb = AABB({-.3, -.45, -.3}, {.3, 1.25, .3});
 }
 
 void Player::setYaw(float yaw)
@@ -37,4 +39,44 @@ void Player::setYaw(float yaw)
 void Player::setPitch(float pitch)
 {
     Player::pitch = pitch;
+}
+
+void Player::tick()
+{
+    Entity::tick();
+
+    moveByController();
+}
+
+void Player::setControlledSpeed(const Vec3f &speed)
+{
+    controlledSpeed = speed;
+}
+
+void Player::moveByController()
+{
+    Vec3f controlledSpeed1 = controlledSpeed;
+    controlledSpeed1.x = 0;
+    controlledSpeed1.y = 0;
+    if(!collideWithBlocks(controlledSpeed1))
+        move(controlledSpeed1);
+
+    Vec3f controlledSpeed2 = controlledSpeed;
+    controlledSpeed2.x = 0;
+    controlledSpeed2.z = 0;
+    if(!collideWithBlocks(controlledSpeed2))
+        move(controlledSpeed2);
+
+    Vec3f controlledSpeed3 = controlledSpeed;
+    controlledSpeed3.z = 0;
+    controlledSpeed3.y = 0;
+    if(!collideWithBlocks(controlledSpeed3))
+        move(controlledSpeed3);
+
+    controlledSpeed = {0., 0., 0.};
+}
+
+Vec3f Player::getEyePos() const
+{
+    return {0, 1.2f, 0};
 }

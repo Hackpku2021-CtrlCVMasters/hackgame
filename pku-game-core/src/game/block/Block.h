@@ -6,6 +6,7 @@
 #define PKU_GAME_CORE_BLOCK_H
 
 #include <string>
+#include <util/AABB.h>
 
 class Block
 {
@@ -14,11 +15,13 @@ private:
     std::string id;
 public:
     Block(std::string  id, std::string  texture);
-    ~Block();
+    virtual ~Block();
 
-    const std::string &getTexture() const;
+    virtual const std::string &getTexture() const;
 
-    const std::string &getId() const;
+    virtual const std::string &getId() const;
+
+    virtual AABB getAABB() const;
 };
 
 

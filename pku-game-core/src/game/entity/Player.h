@@ -12,17 +12,29 @@ class Player : public Entity
 {
 protected:
     float yaw, pitch;
+    Vec3f controlledSpeed;
 public:
-    explicit Player(World&);
+    explicit Player(World &);
 
     void moveYaw(float offset);
+
     void movePitch(float offset);
+
     float getYaw() const;
+
     float getPitch() const;
+
+    void tick() override;
 
     void setYaw(float yaw);
 
     void setPitch(float pitch);
+
+    void setControlledSpeed(const Vec3f &speed);
+
+    void moveByController();
+
+    Vec3f getEyePos() const;
 };
 
 

@@ -30,7 +30,8 @@ public:
 
     bool collideWith(AABB const &, Vec3f const &) const;
 
-    bool in(Vec3f const &) const;
+
+    void move(Vec3f const&);
 };
 
 

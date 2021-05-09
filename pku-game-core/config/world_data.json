@@ -25,6 +25,11 @@
       "id": "stone",
       "texture": "stone",
       "pos": [2, 0, 1]
+    },
+    {
+      "id": "polished_stone",
+      "texture": "polished_stone",
+      "pos": [2, 0, 2]
     }
   ]
 }

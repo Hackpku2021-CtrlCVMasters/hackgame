@@ -26,3 +26,8 @@ const std::string &Block::getId() const
 {
     return id;
 }
+
+AABB Block::getAABB() const
+{
+    return AABB({-.5, -.5, -.5}, {.5, .5, .5});
+}

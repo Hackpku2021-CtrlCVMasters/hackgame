@@ -1,21 +1,12 @@
 #include "AABB.h"
 
 #include <algorithm>
+#include <raylib.h>
 
-bool AABB::collideWith(const AABB &o) const
+bool AABB::collideWith(const AABB &rhs) const
 {
-    float min_x, min_y, min_z;
-    float max_x, max_y, max_z;
-    min_x = std::min(o.p1.x, o.p2.x);
-    min_y = std::min(o.p1.y, o.p2.y);
-    min_z = std::min(o.p1.z, o.p2.z);
-    max_x = std::max(o.p1.x, o.p2.x);
-    max_y = std::max(o.p1.y, o.p2.y);
-    max_z = std::max(o.p1.z, o.p2.z);
-    return in({min_x, min_y, min_z}) || in({max_x, min_y, min_z}) || in({min_x, max_y, min_z}) ||
-           in({min_x, min_y, max_z}) ||
-           in({max_x, min_y, max_z}) || in({max_x, max_y, min_z}) || in({min_x, max_y, max_z}) ||
-           in({max_x, max_y, max_z});
+    return CheckCollisionBoxes({{p1.x, p1.y, p1.z}, {p2.x, p2.y, p2.z}},
+                               {{rhs.p1.x, rhs.p1.y, rhs.p1.z}, {rhs.p2.x, rhs.p2.y, rhs.p2.z}});
 }
 
 bool AABB::collideWith(const AABB &_o, const Vec3f &offset) const
@@ -24,15 +15,8 @@ bool AABB::collideWith(const AABB &_o, const Vec3f &offset) const
     return collideWith(o);
 }
 
-bool AABB::in(const Vec3f &p) const
+void AABB::move(const Vec3f & v)
 {
-    float min_x, min_y, min_z;
-    float max_x, max_y, max_z;
-    min_x = std::min(p1.x, p2.x);
-    min_y = std::min(p1.y, p2.y);
-    min_z = std::min(p1.z, p2.z);
-    max_x = std::max(p1.x, p2.x);
-    max_y = std::max(p1.y, p2.y);
-    max_z = std::max(p1.z, p2.z);
-    return p.x >= min_x && p.x <= max_x && p.y >= min_y && p.y <= max_y && p.z >= min_z && p.z <= max_z;
+    p1 += v;
+    p2 += v;
 }

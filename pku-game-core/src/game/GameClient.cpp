@@ -33,9 +33,7 @@ void GameClient::initialize()
     WorldGenerator generator(*world, *this);
     generator.generate();
 
-    world->getPlayer()->move({10, 10, 10});
-
-//    application->getMouseListener().disableCursor();
+    world->getPlayer()->move({-1, 3, -1});
 }
 
 void GameClient::tick()
@@ -58,14 +56,13 @@ void GameClient::handleMouseEvent()
     auto* player = world->getPlayer();
     auto& mouseListener = application->getMouseListener();
 
-
     player->moveYaw(sensitivity * (float)mouseListener.getMouseOffsetX());
     player->movePitch(sensitivity * -(float)mouseListener.getMouseOffsetY());
 
-    if(player->getPitch() > M_PI)
-        player->setPitch(M_PI);
-    if(player->getPitch() < -M_PI)
-        player->setPitch(M_PI);
+    if(player->getPitch() > M_PI / 2 - 0.1)
+        player->setPitch(M_PI / 2 -0.1);
+    if(player->getPitch() < -M_PI / 2 + 0.1)
+        player->setPitch(-M_PI / 2 + 0.1);
 }
 
 void GameClient::handleKeyboardEvent()
@@ -74,27 +71,27 @@ void GameClient::handleKeyboardEvent()
     auto* player = world->getPlayer();
     if(keyboardListener.isKeyDown(KEY_SPACE))
     {
-        player->move({0, 0.1, 0});
+        player->setControlledSpeed({0, 0.1, 0});
     }
     if(keyboardListener.isKeyDown(KEY_LEFT_SHIFT))
     {
-        player->move({0, -0.1, 0});
+        player->setControlledSpeed({0, -0.1, 0});
     }
     if(keyboardListener.isKeyDown(KEY_W))
     {
-        player->move({std::cos(player->getYaw()) * 0.1f, 0, std::sin(player->getYaw()) * 0.1f});
+        player->setControlledSpeed({std::cos(player->getYaw()) * 0.1f, 0, std::sin(player->getYaw()) * 0.1f});
     }
     if(keyboardListener.isKeyDown(KEY_S))
     {
-        player->move({-std::cos(player->getYaw()) * 0.1f, 0, -std::sin(player->getYaw()) * 0.1f});
+        player->setControlledSpeed({-std::cos(player->getYaw()) * 0.1f, 0, -std::sin(player->getYaw()) * 0.1f});
     }
     if(keyboardListener.isKeyDown(KEY_D))
     {
-        player->move({-std::sin(player->getYaw()) * 0.1f, 0, std::cos(player->getYaw()) * 0.1f});
+        player->setControlledSpeed({-std::sin(player->getYaw()) * 0.1f, 0, std::cos(player->getYaw()) * 0.1f});
     }
     if(keyboardListener.isKeyDown(KEY_A))
     {
-        player->move({std::sin(player->getYaw()) * 0.1f, 0, -std::cos(player->getYaw()) * 0.1f});
+        player->setControlledSpeed({std::sin(player->getYaw()) * 0.1f, 0, -std::cos(player->getYaw()) * 0.1f});
     }
 }
 

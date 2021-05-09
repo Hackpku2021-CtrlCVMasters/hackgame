@@ -20,7 +20,8 @@ void BlockRenderer::render(World &world)
 
     auto* player = world.getPlayer();
     Camera3D camera = { 0 };
-    camera.position = (Vector3){ player->getPosition().x, player->getPosition().y, player->getPosition().z};
+    Vec3f cameraPosition = player->getPosition() + player->getEyePos();
+    camera.position = (Vector3){ cameraPosition.x, cameraPosition.y, cameraPosition.z};
     float targetX = std::cos(player->getPitch()) * std::cos(player->getYaw());
     float targetY = std::sin(player->getPitch());
     float targetZ = std::cos(player->getPitch()) * std::sin(player->getYaw());
@@ -32,7 +33,7 @@ void BlockRenderer::render(World &world)
     camera.fovy = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 
-    SetCameraMode(camera, CAMERA_FREE);
+    SetCameraMode(camera, CAMERA_PERSPECTIVE);
     UpdateCamera(&camera);
 
     BeginDrawing();

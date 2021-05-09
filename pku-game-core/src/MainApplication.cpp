@@ -27,11 +27,12 @@ MainApplication::~MainApplication()
     delete mouseListener;
 }
 
-#include "iostream"
-
 void MainApplication::main()
 {
     InitWindow(screenWidth, screenHeight, windowName.c_str());
+
+    SetTargetFPS(60);
+
     gameClient->initialize();
     renderEngine->initialize();
 
@@ -47,7 +48,6 @@ void MainApplication::main()
 //    }).detach();
 
     //start render loop
-    SetTargetFPS(60);
     while (!WindowShouldClose())
     {
         logicMutex.lock();
