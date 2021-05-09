@@ -17,6 +17,7 @@ protected:
     World *world;
     Vec3f position;
     std::optional<AABB> aabb;
+    float fallingSpeed;
 public:
     explicit Entity(World &);
 
@@ -33,6 +34,12 @@ public:
     const std::optional<AABB> &getAABB() const;
 
     virtual bool collideWithBlocks(Vec3f const& ) const;
+
+    virtual bool influencedByGravity() const;
+
+    virtual void gravityInfluencedFall();
+
+    virtual float getGravity() const;
 };
 
 

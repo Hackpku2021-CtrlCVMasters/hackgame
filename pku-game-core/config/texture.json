@@ -19,6 +19,26 @@
     {
       "name": "cracked_stone",
       "path": "../texture/cracked_stone.png"
+    },
+    {
+      "name": "sand",
+      "path": "../texture/sand.png"
+    },
+    {
+      "name": "wooden_box",
+      "path": "../texture/wooden_box.png"
+    },
+    {
+      "name": "dirt",
+      "path": "../texture/dirt.png"
+    },
+    {
+      "name": "stone_wall",
+      "path": "../texture/stone_wall.png"
+    },
+    {
+      "name": "steel_wall",
+      "path": "../texture/steel_wall.png"
     }
   ]
 }

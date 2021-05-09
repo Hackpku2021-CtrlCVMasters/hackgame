@@ -24,7 +24,7 @@ int MouseListener::getMouseY() {
 
 int MouseListener::getMouseOffsetX() {
     int t = x;
-    
+
     x = ::GetMouseX();
     return x - t;
 }

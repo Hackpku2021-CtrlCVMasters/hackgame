@@ -14,6 +14,8 @@
 
 #include <cmath>
 
+#include <fmt/format.h>
+
 void BlockRenderer::render(World &world)
 {
     auto const& blocks = world.getBlocks();
@@ -25,9 +27,9 @@ void BlockRenderer::render(World &world)
     float targetX = std::cos(player->getPitch()) * std::cos(player->getYaw());
     float targetY = std::sin(player->getPitch());
     float targetZ = std::cos(player->getPitch()) * std::sin(player->getYaw());
-    targetX += player->getPosition().x;
-    targetY += player->getPosition().y;
-    targetZ += player->getPosition().z;
+    targetX += cameraPosition.x;
+    targetY += cameraPosition.y;
+    targetZ += cameraPosition.z;
     camera.target = (Vector3){ targetX, targetY, targetZ };
     camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
     camera.fovy = 45.0f;

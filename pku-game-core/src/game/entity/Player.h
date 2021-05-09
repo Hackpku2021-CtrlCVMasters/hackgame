@@ -35,6 +35,12 @@ public:
     void moveByController();
 
     Vec3f getEyePos() const;
+
+    bool influencedByGravity() const override;
+
+    bool canJump() const;
+
+    void jump();
 };
 
 

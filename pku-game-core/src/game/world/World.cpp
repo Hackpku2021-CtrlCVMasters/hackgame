@@ -37,7 +37,7 @@ void World::addEntity(std::unique_ptr<Entity> entity)
 
 Block *World::getBlockAt(int x, int y, int z)
 {
-    return blocks[Vec3i(x, y, z)].get();
+    return blocks[{x, y, z}].get();
 }
 
 Player *World::getPlayer()

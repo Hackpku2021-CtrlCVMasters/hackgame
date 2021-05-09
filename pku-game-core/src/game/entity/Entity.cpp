@@ -9,12 +9,14 @@
 
 void Entity::tick()
 {
-
+    if(influencedByGravity())
+        gravityInfluencedFall();
 }
 
 Entity::Entity(World & world):world(&world)
 {
     aabb = AABB();
+    fallingSpeed = 0.0f;
 }
 
 Entity::~Entity()
@@ -61,4 +63,24 @@ bool Entity::collideWithBlocks(Vec3f const& offset) const
         }
     }
     return false;
+}
+
+bool Entity::influencedByGravity() const
+{
+    return false;
+}
+
+void Entity::gravityInfluencedFall()
+{
+    fallingSpeed += getGravity();
+    Vec3f fallingVector{0., -fallingSpeed, 0.};
+    if(!collideWithBlocks(fallingVector))
+        move(fallingVector);
+    else
+        fallingSpeed = 0.0f;
+}
+
+float Entity::getGravity() const
+{
+    return 0.005;
 }

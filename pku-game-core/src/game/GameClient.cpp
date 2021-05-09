@@ -33,7 +33,7 @@ void GameClient::initialize()
     WorldGenerator generator(*world, *this);
     generator.generate();
 
-    world->getPlayer()->move({-1, 3, -1});
+    world->getPlayer()->move({1, 5, 1});
 }
 
 void GameClient::tick()
@@ -49,15 +49,17 @@ World &GameClient::getWorld()
     return *world;
 }
 
+#include "fmt/format.h"
+
 void GameClient::handleMouseEvent()
 {
-    static const float sensitivity = 0.003;
+    static const float sensitivity = 0.005;
 
     auto* player = world->getPlayer();
     auto& mouseListener = application->getMouseListener();
 
     player->moveYaw(sensitivity * (float)mouseListener.getMouseOffsetX());
-    player->movePitch(sensitivity * -(float)mouseListener.getMouseOffsetY());
+    player->movePitch(sensitivity * (float)-mouseListener.getMouseOffsetY());
 
     if(player->getPitch() > M_PI / 2 - 0.1)
         player->setPitch(M_PI / 2 -0.1);
@@ -71,12 +73,13 @@ void GameClient::handleKeyboardEvent()
     auto* player = world->getPlayer();
     if(keyboardListener.isKeyDown(KEY_SPACE))
     {
-        player->setControlledSpeed({0, 0.1, 0});
+        if(player->canJump())
+            player->jump();
     }
-    if(keyboardListener.isKeyDown(KEY_LEFT_SHIFT))
-    {
-        player->setControlledSpeed({0, -0.1, 0});
-    }
+//    if(keyboardListener.isKeyDown(KEY_LEFT_SHIFT))
+//    {
+//        player->setControlledSpeed({0, -0.1, 0});
+//    }
     if(keyboardListener.isKeyDown(KEY_W))
     {
         player->setControlledSpeed({std::cos(player->getYaw()) * 0.1f, 0, std::sin(player->getYaw()) * 0.1f});

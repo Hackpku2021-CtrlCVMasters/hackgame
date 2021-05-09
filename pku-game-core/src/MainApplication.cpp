@@ -6,12 +6,10 @@
 #include "MouseListener.h"
 #include "KeyEventListener.h"
 
-#include <thread>
-
 MainApplication::MainApplication()
 {
-    screenHeight = 720;
-    screenWidth = 1080;
+    screenHeight = 936;
+    screenWidth = 1404;
     windowName = "Demo Hack pku game";
     gameClient = new GameClient(*this);
     renderEngine = new RenderEngine(*this);
@@ -36,16 +34,6 @@ void MainApplication::main()
     gameClient->initialize();
     renderEngine->initialize();
 
-    //start logic loop
-//    std::thread([this](){
-//        while(!WindowShouldClose())
-//        {
-//            logicMutex.lock();
-//
-//            logicMutex.unlock();
-//            std::this_thread::sleep_for(std::chrono::milliseconds(50));
-//        }
-//    }).detach();
 
     //start render loop
     while (!WindowShouldClose())

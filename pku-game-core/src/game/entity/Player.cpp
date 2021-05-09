@@ -26,7 +26,7 @@ float Player::getPitch() const
 
 Player::Player(World & world) : Entity(world){
     yaw = 0.;
-    pitch = 0.;
+    pitch = 1.;
 
     aabb = AABB({-.3, -.45, -.3}, {.3, 1.25, .3});
 }
@@ -79,4 +79,19 @@ void Player::moveByController()
 Vec3f Player::getEyePos() const
 {
     return {0, 1.2f, 0};
+}
+
+bool Player::influencedByGravity() const
+{
+    return true;
+}
+
+bool Player::canJump() const
+{
+    return collideWithBlocks(Vec3f{0, -0.01, 0});
+}
+
+void Player::jump()
+{
+    fallingSpeed = -0.15;
 }
