@@ -14,6 +14,10 @@ private:
 public:
     explicit BlockRenderer(RenderEngine&);
     void render(World &world);
+
+private:
+    void renderBlocks(World& world);
+    void renderClouds(World& world);
 };
 
 

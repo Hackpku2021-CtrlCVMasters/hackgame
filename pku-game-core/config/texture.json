@@ -39,6 +39,10 @@
     {
       "name": "steel_wall",
       "path": "../texture/steel_wall.png"
+    },
+    {
+      "name": "log",
+      "path": "../texture/log.png"
     }
   ]
 }
