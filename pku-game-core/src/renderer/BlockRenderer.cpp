@@ -14,29 +14,33 @@
 
 #include <cmath>
 
-#include <fmt/format.h>
-
 void BlockRenderer::render(World &world)
 {
-    auto const& blocks = world.getBlocks();
+    static std::int32_t times = 0;
+    auto const &blocks = world.getBlocks();
 
     ClearBackground(RAYWHITE);
 
-    for(auto const& block: blocks)
+    for (auto const &block: blocks)
     {
-        if(block.second == nullptr)
+        if (block.second == nullptr)
             continue;
 
-        auto* texture = getRenderEngine().getTextureManager().getTexture(block.second->getTexture());
-        DrawCubeTexture(*texture,
-                        Vector3{(float)block.first.x, (float)block.first.y, (float)block.first.z}, 1.0f, 1.0f, 1.0f, WHITE);
+        auto *texture = getRenderEngine().getTextureManager().getTexture(block.second->getTexture());
+
+        {
+            DrawCubeTexture(*texture,
+                            Vector3{(float) block.first.x, (float) block.first.y, (float) block.first.z}, 1.0f, 1.0f,
+                            1.0f, WHITE);
+            ++times;
+        }
     }
 
     DrawGrid(10, 1.0f);
 
-
 }
 
-BlockRenderer::BlockRenderer(RenderEngine & e) : BaseRenderer(e){
+BlockRenderer::BlockRenderer(RenderEngine &e) : BaseRenderer(e)
+{
 
 }

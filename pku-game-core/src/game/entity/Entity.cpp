@@ -2,6 +2,7 @@
 // Created by listerily on 5/8/21.
 //
 
+#include <cmath>
 #include "Entity.h"
 
 #include "game/world/World.h"
@@ -48,19 +49,23 @@ bool Entity::collideWithBlocks(Vec3f const& offset) const
 {
     if(aabb.has_value())
     {
-        auto const& blocks = world->getBlocks();
         auto thisAABB = *aabb;
         thisAABB.move(position + offset);
-        for(auto const& block : blocks)
-        {
-            if(block.second == nullptr)
-                continue;
-            auto const& blockAABB = block.second->getAABB();
-            if(thisAABB.collideWith(blockAABB, {(float)block.first.x, (float) block.first.y, (float)block.first.z}))
-            {
-                return true;
-            }
-        }
+        for(std::int32_t i = -5; i <= 5; ++i)
+            for(std::int32_t j = - 5; j <= 5; ++j)
+                for(std::int32_t k = -5; k <= 5; ++k)
+                {
+                    int x = i + (int)position.x;
+                    int y = j + (int)position.y;
+                    int z = k + (int)position.z;
+                    auto* block = world->getBlockAt(x, y, z);
+                    if(block)
+                    {
+                        auto const& blockAABB = block->getAABB();
+                        if(thisAABB.collideWith(blockAABB, Vec3f{(float)x, (float)y, (float)z}))
+                            return true;
+                    }
+                }
     }
     return false;
 }
