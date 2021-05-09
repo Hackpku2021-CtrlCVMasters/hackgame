@@ -95,3 +95,8 @@ void Player::jump()
 {
     fallingSpeed = -0.15;
 }
+
+int Player::getTypeId() const
+{
+    return Player::TYPE_ID;
+}

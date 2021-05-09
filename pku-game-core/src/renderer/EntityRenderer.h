@@ -9,7 +9,11 @@
 
 class EntityRenderer : public BaseRenderer
 {
+private:
 
+public:
+    explicit EntityRenderer(RenderEngine&);
+    void render(World &world);
 };
 
 

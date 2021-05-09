@@ -8,6 +8,7 @@
 
 #include "BlockRenderer.h"
 #include "MainApplication.h"
+#include "EntityRenderer.h"
 #include "game/GameClient.h"
 #include "texture/TextureManager.h"
 #include "game/world/World.h"
@@ -19,12 +20,15 @@ RenderEngine::RenderEngine(MainApplication & application)
     textureManager = new TextureManager(*this);
 
     blockRenderer = new BlockRenderer(*this);
+
+    entityRenderer = new EntityRenderer(*this);
 }
 
 RenderEngine::~RenderEngine()
 {
     delete textureManager;
     delete blockRenderer;
+    delete entityRenderer;
 }
 
 void RenderEngine::initialize()
@@ -57,6 +61,7 @@ void RenderEngine::render()
     BeginMode3D(camera);
 
     blockRenderer->render(world);
+    entityRenderer->render(world);
 
     EndMode3D();
     EndDrawing();

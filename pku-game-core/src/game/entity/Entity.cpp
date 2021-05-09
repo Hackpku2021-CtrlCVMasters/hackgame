@@ -89,3 +89,8 @@ float Entity::getGravity() const
 {
     return 0.005;
 }
+
+void Entity::setPos(const Vec3f & v)
+{
+    position = v;
+}

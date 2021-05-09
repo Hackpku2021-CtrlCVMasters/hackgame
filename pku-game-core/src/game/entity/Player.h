@@ -41,6 +41,10 @@ public:
     bool canJump() const;
 
     void jump();
+
+    int getTypeId() const override;
+
+    static const int TYPE_ID = 0;
 };
 
 

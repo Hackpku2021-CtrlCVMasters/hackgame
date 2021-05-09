@@ -29,7 +29,7 @@ void MainApplication::main()
 {
     InitWindow(screenWidth, screenHeight, windowName.c_str());
 
-    SetTargetFPS(60);
+    SetTargetFPS(30);
 
     gameClient->initialize();
     renderEngine->initialize();

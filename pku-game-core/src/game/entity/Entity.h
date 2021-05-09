@@ -40,6 +40,10 @@ public:
     virtual void gravityInfluencedFall();
 
     virtual float getGravity() const;
+
+    virtual int getTypeId() const = 0;
+
+    virtual void setPos(Vec3f const& );
 };
 
 

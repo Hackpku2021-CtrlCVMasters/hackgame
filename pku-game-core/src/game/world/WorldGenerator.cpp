@@ -12,6 +12,7 @@
 #include <json/json.h>
 #include <fstream>
 #include <memory>
+#include <game/entity/Slime.h>
 
 WorldGenerator::WorldGenerator(World &world, GameClient &client) :
         world(&world), gameClient(&client)
@@ -38,6 +39,20 @@ void WorldGenerator::generate()
         int z = v["pos"][2].asInt();
 
         world->setBlock(x, y, z, std::move(std::make_unique<Block>(v["id"].asString(), v["texture"].asString())));
+    }
+
+    for(auto const& v: value["entities"])
+    {
+        float x = v["pos"][0].asFloat();
+        float y = v["pos"][1].asFloat();
+        float z = v["pos"][2].asFloat();
+
+        if(v["id"].asString() == "slime")
+        {
+            auto slime = std::make_unique<Slime>(*world);
+            slime->setPos(Vec3f{x, y, z});
+            world->addEntity(std::move(slime));
+        }
     }
 
     world->addPlayer(std::make_unique<Player>(*world));

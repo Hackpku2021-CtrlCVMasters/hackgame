@@ -8,12 +8,14 @@
 class MainApplication;
 class BlockRenderer;
 class TextureManager;
+class EntityRenderer;
 class RenderEngine
 {
 private:
     MainApplication* app;
     BlockRenderer* blockRenderer;
     TextureManager* textureManager;
+    EntityRenderer* entityRenderer;
 public:
     explicit RenderEngine(MainApplication&);
     ~RenderEngine();
