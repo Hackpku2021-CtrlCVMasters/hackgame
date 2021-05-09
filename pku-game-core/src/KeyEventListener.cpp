@@ -3,7 +3,7 @@
 //
 
 #include "KeyEventListener.h"
-#include "../include/raylib.h"
+#include "raylib.h"
 
 
 bool KeyEventListener::isKeyPressed(int key) const {

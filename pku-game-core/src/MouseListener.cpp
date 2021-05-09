@@ -3,12 +3,12 @@
 //
 
 #include "MouseListener.h"
-#include "../include/raylib.h"
+#include "raylib.h"
 
 MouseListener::MouseListener(MainApplication & __app) {
     app = &__app;
-    x = ::GetMouseX();
-    y = ::GetMouseY();
+    x = 0;
+    y = 0;
 }
 
 MouseListener::~MouseListener() {
