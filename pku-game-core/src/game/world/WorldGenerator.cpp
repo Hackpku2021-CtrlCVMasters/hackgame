@@ -55,5 +55,16 @@ void WorldGenerator::generate()
         }
     }
 
-    world->addPlayer(std::make_unique<Player>(*world));
+    auto player = std::make_unique<Player>(*world);
+    player->setPos({0, 10.0f, 0});
+    for(int i = 50; i >= 0; --i)
+    {
+        if(world->getBlockAt(0, i, 0))
+        {
+            player->setPos({0, (float)i + 1.0f, 0});
+            break;
+        }
+    }
+    world->addPlayer(std::move(player));
+
 }

@@ -43,6 +43,10 @@
     {
       "name": "log",
       "path": "../texture/log.png"
+    },
+    {
+      "name": "cactus",
+      "path": "../texture/cactus.png"
     }
   ]
 }

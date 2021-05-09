@@ -32,8 +32,6 @@ void GameClient::initialize()
     world = new World(*this);
     WorldGenerator generator(*world, *this);
     generator.generate();
-
-    world->getPlayer()->move({1, 75, 1});
 }
 
 void GameClient::tick()

@@ -43,7 +43,7 @@ void EntityRenderer::render(World &world)
                 float p4x = size * std::sin(slime->getFacing());
                 float p4z = size * -std::cos(slime->getFacing());
 
-                auto slimeColor = (Color){ 0, 87, 0, 192 };
+                auto slimeColor = (Color){ 0, 120, 0, 192 };
 
                 DrawTriangle3D({x + p1x, y, z + p1z}, {x + p2x, y, z + p2z}, {x + p3x, y, z + p3z}, slimeColor);
                 DrawTriangle3D({x + p1x, y, z + p1z}, {x + p3x, y, z + p3z}, {x + p4x, y, z + p4z}, slimeColor);
