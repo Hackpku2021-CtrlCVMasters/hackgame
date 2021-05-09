@@ -36,6 +36,7 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
             pthread
             raylib
             winmm
+            jsoncpp
     )
 else()
     target_link_directories(
@@ -50,6 +51,7 @@ else()
             GL
             pthread
             raylib
+            jsoncpp
     )
 endif()
 
