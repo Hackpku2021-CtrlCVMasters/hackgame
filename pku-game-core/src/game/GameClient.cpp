@@ -33,7 +33,7 @@ void GameClient::initialize()
     WorldGenerator generator(*world, *this);
     generator.generate();
 
-    world->getPlayer()->move({1, 5, 1});
+    world->getPlayer()->move({1, 50, 1});
 }
 
 void GameClient::tick()
@@ -48,8 +48,6 @@ World &GameClient::getWorld()
 {
     return *world;
 }
-
-#include "fmt/format.h"
 
 void GameClient::handleMouseEvent()
 {
