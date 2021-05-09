@@ -27,6 +27,8 @@ MainApplication::~MainApplication()
     delete mouseListener;
 }
 
+#include "iostream"
+
 void MainApplication::main()
 {
     InitWindow(screenWidth, screenHeight, windowName.c_str());
@@ -34,21 +36,22 @@ void MainApplication::main()
     renderEngine->initialize();
 
     //start logic loop
-    std::thread([this](){
-        while(!WindowShouldClose())
-        {
-            logicMutex.lock();
-            logicTick();
-            logicMutex.unlock();
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
-        }
-    }).detach();
+//    std::thread([this](){
+//        while(!WindowShouldClose())
+//        {
+//            logicMutex.lock();
+//
+//            logicMutex.unlock();
+//            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+//        }
+//    }).detach();
 
     //start render loop
     SetTargetFPS(60);
     while (!WindowShouldClose())
     {
         logicMutex.lock();
+        logicTick();
         renderTick();
         logicMutex.unlock();
     }
@@ -74,4 +77,14 @@ GameClient &MainApplication::getGameClient()
 RenderEngine &MainApplication::getRenderEngine()
 {
     return *renderEngine;
+}
+
+KeyEventListener &MainApplication::getKeyEventListener()
+{
+    return *keyEventListener;
+}
+
+MouseListener &MainApplication::getMouseListener()
+{
+    return *mouseListener;
 }

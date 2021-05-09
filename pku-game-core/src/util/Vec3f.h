@@ -1,15 +1,11 @@
-#ifndef OPEN_CRAFT_VEC3_H
-#define OPEN_CRAFT_VEC3_H
+#ifndef OPEN_CRAFT_VEC3F_H
+#define OPEN_CRAFT_VEC3F_H
 
 
 class Vec3f
 {
 public:
-    float x, y, z;
-
-    Vec3f() : x(0), y(0), z(0) {}
-
-    Vec3f(float x, float y, float z) : x(0), y(0), z(0) {}
+    float x{0}, y{0}, z{0};
 
     Vec3f operator+(Vec3f const &v) const { return {x + v.x, y + v.y, z + v.z}; }
 
@@ -56,4 +52,4 @@ public:
 };
 
 
-#endif //OPEN_CRAFT_VEC3_H
+#endif //OPEN_CRAFT_VEC3F_H

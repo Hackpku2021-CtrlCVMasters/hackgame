@@ -7,6 +7,7 @@
 #include "World.h"
 
 #include "../block/Block.h"
+#include "../entity/Player.h"
 
 #include <json/json.h>
 #include <fstream>
@@ -38,4 +39,6 @@ void WorldGenerator::generate()
 
         world->setBlock(x, y, z, std::move(std::make_unique<Block>(v["id"].asString(), v["texture"].asString())));
     }
+
+    world->addPlayer(std::make_unique<Player>(*world));
 }

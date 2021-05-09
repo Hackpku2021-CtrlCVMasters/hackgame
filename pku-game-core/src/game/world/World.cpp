@@ -14,7 +14,7 @@ const std::vector<std::unique_ptr<Entity> > &World::getEntities() const
     return entities;
 }
 
-const std::map<Vec3i, std::unique_ptr<Block>> &World::getBlocks() const
+const std::unordered_map<Vec3i, std::unique_ptr<Block>> &World::getBlocks() const
 {
     return blocks;
 }
@@ -53,12 +53,12 @@ void World::addPlayer(std::unique_ptr<Player> p)
 
 void World::setBlock(int x, int y, int z, std::unique_ptr<Block> block)
 {
-    blocks[Vec3i(x, y, z)] = std::move(block);
+    blocks[{x, y, z}] = std::move(block);
 }
 
 void World::removeBlock(int x, int y, int z)
 {
-    blocks[Vec3i(x, y, z)] = nullptr;
+    blocks[{x, y, z}] = nullptr;
 }
 
 void World::tick()

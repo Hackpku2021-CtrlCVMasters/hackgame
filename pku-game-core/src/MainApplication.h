@@ -26,6 +26,8 @@ public:
     void main();
     GameClient& getGameClient();
     RenderEngine& getRenderEngine();
+    KeyEventListener& getKeyEventListener();
+    MouseListener& getMouseListener();
 private:
     void renderTick();
     void logicTick();

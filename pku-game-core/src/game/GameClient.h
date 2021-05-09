@@ -21,6 +21,10 @@ public:
     void tick();
 
     World& getWorld();
+
+private:
+    void handleMouseEvent();
+    void handleKeyboardEvent();
 };
 
 
