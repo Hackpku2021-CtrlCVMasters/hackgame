@@ -7,24 +7,33 @@
 #include "BlockRenderer.h"
 #include "MainApplication.h"
 #include "game/GameClient.h"
+#include "texture/TextureManager.h"
 
 RenderEngine::RenderEngine(MainApplication & application)
 {
     app = &application;
-    blockRenderer = new BlockRenderer();
+    textureManager = new TextureManager(*this);
+
+    blockRenderer = new BlockRenderer(*this);
 }
 
 RenderEngine::~RenderEngine()
 {
+    delete textureManager;
     delete blockRenderer;
 }
 
 void RenderEngine::initialize()
 {
-
+    textureManager->initialize();
 }
 
 void RenderEngine::render()
 {
     blockRenderer->render(app->getGameClient().getWorld());
+}
+
+TextureManager &RenderEngine::getTextureManager()
+{
+    return *textureManager;
 }

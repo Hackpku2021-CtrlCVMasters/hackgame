@@ -1,4 +1,4 @@
-#include "game.h"
+#include "main.h"
 
 //Draw game per frame...
 void Game::DrawGame()

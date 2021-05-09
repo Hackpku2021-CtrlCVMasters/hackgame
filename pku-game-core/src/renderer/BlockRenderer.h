@@ -12,7 +12,8 @@ class BlockRenderer : public BaseRenderer
 private:
 
 public:
-    void render(World &world) override;
+    explicit BlockRenderer(RenderEngine&);
+    void render(World &world);
 };
 
 

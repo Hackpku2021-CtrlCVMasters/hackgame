@@ -32,7 +32,10 @@ void WorldGenerator::generate()
     std::ifstream("../config/world_data.json") >> value;
     for(auto const& v: value["blocks"])
     {
-        world->setBlock(v["pos"][0].asInt(), v["pos"][1].asInt(), v["pos"][2].asInt(),
-                std::move(std::make_unique<Block>(v["id"].asString(), v["texture"].asString())));
+        int x = v["pos"][0].asInt();
+        int y = v["pos"][1].asInt();
+        int z = v["pos"][2].asInt();
+
+        world->setBlock(x, y, z, std::move(std::make_unique<Block>(v["id"].asString(), v["texture"].asString())));
     }
 }

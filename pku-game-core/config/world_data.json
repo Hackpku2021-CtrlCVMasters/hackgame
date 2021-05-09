@@ -3,8 +3,28 @@
   "blocks": [
     {
       "id": "grass",
-      "texture": "grass.png",
+      "texture": "grass",
       "pos": [0, 0, 0]
+    },
+    {
+      "id": "grass",
+      "texture": "grass",
+      "pos": [1, 0, 0]
+    },
+    {
+      "id": "grass",
+      "texture": "grass",
+      "pos": [0, 0, 1]
+    },
+    {
+      "id": "cracked_stone",
+      "texture": "cracked_stone",
+      "pos": [1, 0, 1]
+    },
+    {
+      "id": "stone",
+      "texture": "stone",
+      "pos": [2, 0, 1]
     }
   ]
 }

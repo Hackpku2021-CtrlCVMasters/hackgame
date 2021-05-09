@@ -8,6 +8,9 @@
 #include "game/world/World.h"
 #include "game/block/Block.h"
 
+#include "RenderEngine.h"
+#include "texture/TextureManager.h"
+
 void BlockRenderer::render(World &world)
 {
     auto const& blocks = world.getBlocks();
@@ -28,10 +31,16 @@ void BlockRenderer::render(World &world)
 
     BeginMode3D(camera);
 
+
+
     for(auto const& block: blocks)
     {
-        DrawCube(Vector3{block.first.x, block.first.y, block.first.z}, 2.0f, 2.0f, 2.0f, RED);
-        DrawCubeWires(Vector3{block.first.x, block.first.y, block.first.z}, 2.0f, 2.0f, 2.0f, MAROON);
+        if(block.second == nullptr)
+            continue;
+
+        auto* texture = getRenderEngine().getTextureManager().getTexture(block.second->getTexture());
+        DrawCubeTexture(*texture,
+                        Vector3{(float)block.first.x, (float)block.first.y, (float)block.first.z}, 1.0f, 1.0f, 1.0f, WHITE);
     }
 
     DrawGrid(10, 1.0f);
@@ -39,4 +48,8 @@ void BlockRenderer::render(World &world)
     EndMode3D();
 
     EndDrawing();
+}
+
+BlockRenderer::BlockRenderer(RenderEngine & e) : BaseRenderer(e){
+
 }

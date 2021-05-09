@@ -2,18 +2,18 @@
 #define OPEN_CRAFT_VEC3_H
 
 
-class Vec3
+class Vec3f
 {
 public:
     float x, y, z;
 
-    Vec3() : x(0.0f), y(0.0f), z(0.0f) {}
+    Vec3f() : x(0), y(0), z(0) {}
 
-    Vec3(float x, float y, float z) : x(0.0f), y(0.0f), z(0.0f) {}
+    Vec3f(float x, float y, float z) : x(0), y(0), z(0) {}
 
-    Vec3 operator+(Vec3 const &v) const { return {x + v.x, y + v.y, z + v.z}; }
+    Vec3f operator+(Vec3f const &v) const { return {x + v.x, y + v.y, z + v.z}; }
 
-    Vec3 &operator+=(Vec3 const &v)
+    Vec3f &operator+=(Vec3f const &v)
     {
         x += v.x;
         y += v.y;
@@ -21,9 +21,9 @@ public:
         return *this;
     }
 
-    Vec3 operator-(Vec3 const &v) const { return {x - v.x, y - v.y, z - v.z}; }
+    Vec3f operator-(Vec3f const &v) const { return {x - v.x, y - v.y, z - v.z}; }
 
-    Vec3 &operator-=(Vec3 const &v)
+    Vec3f &operator-=(Vec3f const &v)
     {
         x -= v.x;
         y -= v.y;
@@ -31,7 +31,7 @@ public:
         return *this;
     }
 
-    bool operator<(Vec3 const& v) const
+    bool operator<(Vec3f const& v) const
     {
         if(x != v.x)
             return x < v.x;
@@ -40,7 +40,7 @@ public:
         return z < v.z;
     }
 
-    bool operator>(Vec3 const& v) const
+    bool operator>(Vec3f const& v) const
     {
         if(x != v.x)
             return x > v.x;
@@ -49,7 +49,7 @@ public:
         return z > v.z;
     }
 
-    bool operator==(Vec3 const& v) const
+    bool operator==(Vec3f const& v) const
     {
         return x == v.x && y == v.y && z == v.z;
     }

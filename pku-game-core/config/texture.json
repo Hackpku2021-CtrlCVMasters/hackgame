@@ -1,0 +1,24 @@
+{
+  "textures": [
+    {
+      "name": "grass",
+      "path": "../texture/grass.png"
+    },
+    {
+      "name": "stone",
+      "path": "../texture/stone.png"
+    },
+    {
+      "name": "leaves",
+      "path": "../texture/leaves.png"
+    },
+    {
+      "name": "polished_stone",
+      "path": "../texture/polished_stone.png"
+    },
+    {
+      "name": "cracked_stone",
+      "path": "../texture/cracked_stone.png"
+    }
+  ]
+}

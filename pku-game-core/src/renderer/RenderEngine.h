@@ -7,17 +7,21 @@
 
 class MainApplication;
 class BlockRenderer;
+class TextureManager;
 class RenderEngine
 {
 private:
     MainApplication* app;
     BlockRenderer* blockRenderer;
+    TextureManager* textureManager;
 public:
     explicit RenderEngine(MainApplication&);
     ~RenderEngine();
 
     void initialize();
     void render();
+
+    TextureManager& getTextureManager();
 };
 
 

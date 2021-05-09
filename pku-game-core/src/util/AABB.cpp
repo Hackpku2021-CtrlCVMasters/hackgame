@@ -18,13 +18,13 @@ bool AABB::collideWith(const AABB &o) const
            in({max_x, max_y, max_z});
 }
 
-bool AABB::collideWith(const AABB &_o, const Vec3 &offset) const
+bool AABB::collideWith(const AABB &_o, const Vec3f &offset) const
 {
     AABB o = {_o.p1 + offset, _o.p2 + offset};
     return collideWith(o);
 }
 
-bool AABB::in(const Vec3 &p) const
+bool AABB::in(const Vec3f &p) const
 {
     float min_x, min_y, min_z;
     float max_x, max_y, max_z;
