@@ -1,0 +1,10 @@
+{
+  "world_id": "main",
+  "blocks": [
+    {
+      "id": "grass",
+      "texture": "grass.png",
+      "pos": [0, 0, 0]
+    }
+  ]
+}

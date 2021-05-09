@@ -7,13 +7,14 @@
 #include "../entity/Entity.h"
 #include "../entity/Player.h"
 #include "../block/Block.h"
+#include "util/Vec3.h"
 
 const std::vector<std::unique_ptr<Entity> > &World::getEntities() const
 {
     return entities;
 }
 
-const std::vector<std::unique_ptr<Block> > &World::getBlocks() const
+const std::map<Vec3, std::unique_ptr<Block>> &World::getBlocks() const
 {
     return blocks;
 }
@@ -21,6 +22,7 @@ const std::vector<std::unique_ptr<Block> > &World::getBlocks() const
 World::World(GameClient & client)
 {
     gameClient = &client;
+    player = nullptr;
 }
 
 World::~World()
@@ -47,4 +49,14 @@ void World::addPlayer(std::unique_ptr<Player> p)
 {
     player = p.get();
     addEntity(std::move(p));
+}
+
+void World::setBlock(int x, int y, int z, std::unique_ptr<Block> block)
+{
+    blocks[Vec3(x, y, z)] = std::move(block);
+}
+
+void World::removeBlock(int x, int y, int z)
+{
+    blocks[Vec3(x, y, z)] = nullptr;
 }

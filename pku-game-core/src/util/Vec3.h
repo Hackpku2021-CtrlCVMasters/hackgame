@@ -30,6 +30,29 @@ public:
         z -= v.z;
         return *this;
     }
+
+    bool operator<(Vec3 const& v) const
+    {
+        if(x != v.x)
+            return x < v.x;
+        if(y != v.y)
+            return y < v.y;
+        return z < v.z;
+    }
+
+    bool operator>(Vec3 const& v) const
+    {
+        if(x != v.x)
+            return x > v.x;
+        if(y != v.y)
+            return y > v.y;
+        return z > v.z;
+    }
+
+    bool operator==(Vec3 const& v) const
+    {
+        return x == v.x && y == v.y && z == v.z;
+    }
 };
 
 

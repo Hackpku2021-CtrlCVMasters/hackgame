@@ -7,6 +7,9 @@
 
 #include <vector>
 #include <memory>
+#include <map>
+
+#include "util/Vec3.h"
 
 class GameClient;
 class Entity;
@@ -16,7 +19,7 @@ class World
 {
 private:
     std::vector<std::unique_ptr<Entity> > entities;
-    std::vector<std::unique_ptr<Block> > blocks;
+    std::map<Vec3, std::unique_ptr<Block> > blocks;
     Player* player;
     GameClient* gameClient;
 public:
@@ -25,7 +28,7 @@ public:
 
     const std::vector<std::unique_ptr<Entity> > &getEntities() const;
 
-    const std::vector<std::unique_ptr<Block> > &getBlocks() const;
+    const std::map<Vec3, std::unique_ptr<Block> > &getBlocks() const;
 
     void addEntity(std::unique_ptr<Entity>);
 
@@ -34,6 +37,10 @@ public:
     Block* getBlockAt(int, int, int);
 
     Player* getPlayer();
+
+    void setBlock(int, int, int, std::unique_ptr<Block>);
+
+    void removeBlock(int, int, int);
 };
 
 
