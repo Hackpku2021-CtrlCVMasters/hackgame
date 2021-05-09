@@ -8,7 +8,8 @@
 
 class Entity
 {
-
+public:
+    void tick();
 };
 
 

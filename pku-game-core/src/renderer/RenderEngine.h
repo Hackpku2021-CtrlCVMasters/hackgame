@@ -6,16 +6,18 @@
 #define PKU_GAME_CORE_RENDERENGINE_H
 
 class MainApplication;
+class BlockRenderer;
 class RenderEngine
 {
 private:
     MainApplication* app;
+    BlockRenderer* blockRenderer;
 public:
     explicit RenderEngine(MainApplication&);
     ~RenderEngine();
 
     void initialize();
-    void tick();
+    void render();
 };
 
 

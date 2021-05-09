@@ -6,16 +6,21 @@
 #define PKU_GAME_CORE_GAMECLIENT_H
 
 class MainApplication;
+class World;
+
 class GameClient
 {
 private:
     MainApplication* application;
+    World* world;
 public:
     explicit GameClient(MainApplication&);
     ~GameClient();
 
     void initialize();
     void tick();
+
+    World& getWorld();
 };
 
 

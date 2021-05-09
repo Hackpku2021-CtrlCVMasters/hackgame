@@ -60,3 +60,11 @@ void World::removeBlock(int x, int y, int z)
 {
     blocks[Vec3(x, y, z)] = nullptr;
 }
+
+void World::tick()
+{
+    for(auto& entity : entities)
+    {
+        entity->tick();
+    }
+}

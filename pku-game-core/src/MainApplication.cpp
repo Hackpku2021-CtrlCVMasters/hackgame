@@ -58,10 +58,20 @@ void MainApplication::main()
 
 void MainApplication::renderTick()
 {
-    renderEngine->tick();
+    renderEngine->render();
 }
 
 void MainApplication::logicTick()
 {
     gameClient->tick();
+}
+
+GameClient &MainApplication::getGameClient()
+{
+    return *gameClient;
+}
+
+RenderEngine &MainApplication::getRenderEngine()
+{
+    return *renderEngine;
 }

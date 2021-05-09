@@ -41,6 +41,8 @@ public:
     void setBlock(int, int, int, std::unique_ptr<Block>);
 
     void removeBlock(int, int, int);
+
+    void tick();
 };
 
 

@@ -24,6 +24,8 @@ public:
     ~MainApplication();
 
     void main();
+    GameClient& getGameClient();
+    RenderEngine& getRenderEngine();
 private:
     void renderTick();
     void logicTick();
