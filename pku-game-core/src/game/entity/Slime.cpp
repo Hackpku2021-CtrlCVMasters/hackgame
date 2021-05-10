@@ -24,10 +24,10 @@ void Slime::tick()
         Pathfinder finder(position, world->getPlayer()->getPosition());
         targetJumpPosition = finder.get(*world);
         fromJumpPosition = position;
-        targetRotatingAngel = (float)atan(-(position.z - targetJumpPosition.z) / (position.x - targetJumpPosition.x));
+        targetRotatingAngel = (float)atan(- (position.x - targetJumpPosition.x) / (position.z - targetJumpPosition.z));
         actionProcess = ActionProcess::ROTATE;
         jumpProcess = 0.0f;
-        rotateAngel = (targetRotatingAngel - facing) / 20.0f;
+        rotateAngel = (targetRotatingAngel - facing) / 50.0f;
     }
     else if(actionProcess == ActionProcess::ROTATE)
     {
@@ -47,6 +47,7 @@ Slime::Slime(World &world) : Entity(world){
     fromJumpPosition = Vec3f();
     jumpProcess = 0.0f;
     rotateAngel = 0.0f;
+    jumpSpeed = 0.005f + float(rand() % 10) * 0.003f;
 }
 
 int Slime::getTypeId() const
@@ -86,14 +87,16 @@ void Slime::jump()
     {
         actionProcess = ActionProcess::READY;
         setPos(targetJumpPosition);
+        jumpProcess = 0.0f;
     }
     else
     {
-        jumpProcess += 0.009f;
         float deltaX = -fromJumpPosition.x + targetJumpPosition.x;
         float deltaZ = -fromJumpPosition.z + targetJumpPosition.z;
         float thisX = fromJumpPosition.x + deltaX * jumpProcess;
         float thisZ = fromJumpPosition.z + deltaZ * jumpProcess;
+
+        jumpProcess += jumpSpeed;
         if(jumpProcess <= 0.5)
         {
             float deltaY = std::max(fromJumpPosition.y, targetJumpPosition.y) + 2.0f - fromJumpPosition.y;

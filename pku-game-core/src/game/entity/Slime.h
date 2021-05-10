@@ -20,6 +20,7 @@ private:
     Vec3f targetJumpPosition;
     Vec3f fromJumpPosition;
     float jumpProcess;
+    float jumpSpeed;
 public:
     explicit Slime(World &);
 
