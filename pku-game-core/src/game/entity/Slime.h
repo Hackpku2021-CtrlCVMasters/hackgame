@@ -10,12 +10,16 @@
 class Slime : public Entity
 {
 private:
+    enum class ActionProcess{
+        READY, ROTATE, JUMP
+    };
     float facing;
-    bool isJumping;
-    bool isRotating;
+    ActionProcess actionProcess;
+    float rotateAngel;
     float targetRotatingAngel;
     Vec3f targetJumpPosition;
     Vec3f fromJumpPosition;
+    float jumpProcess;
 public:
     explicit Slime(World &);
 
@@ -30,6 +34,8 @@ public:
     static const int TYPE_ID = 1;
 
     float getHeight();
+
+    bool influencedByGravity() const override;
 
 private:
     void rotate();

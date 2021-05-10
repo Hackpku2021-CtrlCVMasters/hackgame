@@ -29,7 +29,7 @@ Player::Player(World & world) : Entity(world){
     pitch = 1.;
 
     aabb = AABB({-.3, -.45, -.3}, {.3, 1.25, .3});
-    health = 20;
+    health = 233;
 }
 
 void Player::setYaw(float yaw)
@@ -125,4 +125,9 @@ int Player::getHealth() const
 void Player::setHealth(int h)
 {
     Player::health = h;
+}
+
+void Player::damage(int d)
+{
+    health -= d;
 }

@@ -56,6 +56,8 @@ public:
 
     void addScore(int score);
 
+    void damage(int);
+
     static const int TYPE_ID = 0;
 };
 
