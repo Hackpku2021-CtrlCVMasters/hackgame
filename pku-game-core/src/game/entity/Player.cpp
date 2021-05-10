@@ -29,6 +29,7 @@ Player::Player(World & world) : Entity(world){
     pitch = 1.;
 
     aabb = AABB({-.3, -.45, -.3}, {.3, 1.25, .3});
+    health = 20;
 }
 
 void Player::setYaw(float yaw)
@@ -88,15 +89,40 @@ bool Player::influencedByGravity() const
 
 bool Player::canJump() const
 {
-    return collideWithBlocks(Vec3f{0, -0.01, 0});
+    return collideWithBlocks(Vec3f{0, -0.02, 0});
 }
 
 void Player::jump()
 {
-    fallingSpeed = -0.15;
+    fallingSpeed = -0.3;
 }
 
 int Player::getTypeId() const
 {
     return Player::TYPE_ID;
+}
+
+int Player::getScore() const
+{
+    return score;
+}
+
+void Player::addScore(int s)
+{
+    this->score += s;
+}
+
+void Player::setScore(int score)
+{
+    Player::score = score;
+}
+
+int Player::getHealth() const
+{
+    return health;
+}
+
+void Player::setHealth(int h)
+{
+    Player::health = h;
 }

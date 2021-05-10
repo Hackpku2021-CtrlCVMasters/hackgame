@@ -7,10 +7,17 @@
 void Slime::tick()
 {
     Entity::tick();
+
+
 }
 
 Slime::Slime(World &world) : Entity(world){
     facing = 1.0;
+    isJumping = false;
+    isRotating = false;
+    targetJumpPosition = Vec3f();
+    targetRotatingAngel = 0.0f;
+    fromJumpPosition = Vec3f();
 }
 
 int Slime::getTypeId() const
@@ -31,4 +38,14 @@ float Slime::getFacing() const
 float Slime::getHeight()
 {
     return 0.6;
+}
+
+void Slime::rotate()
+{
+
+}
+
+void Slime::jump()
+{
+
 }

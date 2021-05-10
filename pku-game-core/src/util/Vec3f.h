@@ -1,6 +1,7 @@
 #ifndef OPEN_CRAFT_VEC3F_H
 #define OPEN_CRAFT_VEC3F_H
 
+#include <cmath>
 
 class Vec3f
 {
@@ -48,6 +49,11 @@ public:
     bool operator==(Vec3f const& v) const
     {
         return x == v.x && y == v.y && z == v.z;
+    }
+
+    float getDistance(Vec3f const& v) const
+    {
+        return sqrt(pow(x - v.x, 2) + pow(y - v.y, 2) + pow(z - v.z, 2));
     }
 };
 

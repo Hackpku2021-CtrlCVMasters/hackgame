@@ -11,8 +11,13 @@ class Slime : public Entity
 {
 private:
     float facing;
+    bool isJumping;
+    bool isRotating;
+    float targetRotatingAngel;
+    Vec3f targetJumpPosition;
+    Vec3f fromJumpPosition;
 public:
-    explicit Slime(World&);
+    explicit Slime(World &);
 
     void tick() override;
 
@@ -25,6 +30,11 @@ public:
     static const int TYPE_ID = 1;
 
     float getHeight();
+
+private:
+    void rotate();
+
+    void jump();
 };
 
 

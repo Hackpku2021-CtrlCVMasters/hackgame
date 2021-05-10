@@ -9,7 +9,9 @@
 
 class UIRenderer : public BaseRenderer
 {
-
+public:
+    explicit UIRenderer(RenderEngine&);
+    void render(World &world);
 };
 
 

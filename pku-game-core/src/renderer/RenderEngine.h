@@ -9,6 +9,7 @@ class MainApplication;
 class BlockRenderer;
 class TextureManager;
 class EntityRenderer;
+class UIRenderer;
 class RenderEngine
 {
 private:
@@ -16,6 +17,7 @@ private:
     BlockRenderer* blockRenderer;
     TextureManager* textureManager;
     EntityRenderer* entityRenderer;
+    UIRenderer* uiRenderer;
 public:
     explicit RenderEngine(MainApplication&);
     ~RenderEngine();

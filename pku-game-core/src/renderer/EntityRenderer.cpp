@@ -8,6 +8,7 @@
 #include "game/entity/Entity.h"
 #include "game/world/World.h"
 #include "game/entity/Slime.h"
+#include "game/entity/Food.h"
 
 #include "raylib.h"
 
@@ -43,7 +44,7 @@ void EntityRenderer::render(World &world)
                 float p4x = size * std::sin(slime->getFacing());
                 float p4z = size * -std::cos(slime->getFacing());
 
-                auto slimeColor = (Color){ 0, 120, 0, 192 };
+                auto slimeColor = (Color) {0, 120, 0, 192};
 
                 DrawTriangle3D({x + p1x, y, z + p1z}, {x + p2x, y, z + p2z}, {x + p3x, y, z + p3z}, slimeColor);
                 DrawTriangle3D({x + p1x, y, z + p1z}, {x + p3x, y, z + p3z}, {x + p4x, y, z + p4z}, slimeColor);
@@ -52,15 +53,23 @@ void EntityRenderer::render(World &world)
                 DrawTriangle3D({x + p4x, y + height, z + p4z}, {x + p3x, y + height, z + p3z},
                                {x + p1x, y + height, z + p1z}, slimeColor);
 
-                DrawTriangle3D({x + p2x, y + height, z + p2z}, {x + p2x, y, z + p2z}, {x + p1x, y, z + p1z}, slimeColor);
-                DrawTriangle3D({x + p1x, y + height, z + p1z}, {x + p2x, y + height, z + p2z}, {x + p1x, y, z + p1z}, slimeColor);
-                DrawTriangle3D({x + p4x, y + height, z + p4z}, {x + p4x, y, z + p4z}, {x + p3x, y, z + p3z}, slimeColor);
-                DrawTriangle3D({x + p3x, y + height, z + p3z}, {x + p4x, y + height, z + p4z}, {x + p3x, y, z + p3z}, slimeColor);
+                DrawTriangle3D({x + p2x, y + height, z + p2z}, {x + p2x, y, z + p2z}, {x + p1x, y, z + p1z},
+                               slimeColor);
+                DrawTriangle3D({x + p1x, y + height, z + p1z}, {x + p2x, y + height, z + p2z}, {x + p1x, y, z + p1z},
+                               slimeColor);
+                DrawTriangle3D({x + p4x, y + height, z + p4z}, {x + p4x, y, z + p4z}, {x + p3x, y, z + p3z},
+                               slimeColor);
+                DrawTriangle3D({x + p3x, y + height, z + p3z}, {x + p4x, y + height, z + p4z}, {x + p3x, y, z + p3z},
+                               slimeColor);
 
-                DrawTriangle3D({x + p3x, y, z + p3z}, {x + p2x, y, z + p2z}, {x + p2x, y + height, z + p2z}, slimeColor);
-                DrawTriangle3D({x + p3x, y, z + p3z}, {x + p2x, y + height, z + p2z}, {x + p3x, y + height, z + p3z}, slimeColor);
-                DrawTriangle3D({x + p4x, y + height, z + p4z}, {x + p1x, y, z + p1z}, {x + p4x, y, z + p4z}, slimeColor);
-                DrawTriangle3D({x + p1x, y + height, z + p1z}, {x + p1x, y, z + p1z}, {x + p4x, y + height, z + p4z}, slimeColor);
+                DrawTriangle3D({x + p3x, y, z + p3z}, {x + p2x, y, z + p2z}, {x + p2x, y + height, z + p2z},
+                               slimeColor);
+                DrawTriangle3D({x + p3x, y, z + p3z}, {x + p2x, y + height, z + p2z}, {x + p3x, y + height, z + p3z},
+                               slimeColor);
+                DrawTriangle3D({x + p4x, y + height, z + p4z}, {x + p1x, y, z + p1z}, {x + p4x, y, z + p4z},
+                               slimeColor);
+                DrawTriangle3D({x + p1x, y + height, z + p1z}, {x + p1x, y, z + p1z}, {x + p4x, y + height, z + p4z},
+                               slimeColor);
             }
 
             //Draw eyes
@@ -85,8 +94,10 @@ void EntityRenderer::render(World &world)
                     p1z -= zOffset * 0.2f;
                     p4z += zOffset * 0.65f;
 
-                    DrawTriangle3D({x + p4x, y + top, z + p4z}, {x + p1x, y + bottom, z + p1z}, {x + p4x, y + bottom, z + p4z}, BLACK);
-                    DrawTriangle3D({x + p1x, y + top, z + p1z}, {x + p1x, y + bottom, z + p1z}, {x + p4x, y + top, z + p4z}, BLACK);
+                    DrawTriangle3D({x + p4x, y + top, z + p4z}, {x + p1x, y + bottom, z + p1z},
+                                   {x + p4x, y + bottom, z + p4z}, BLACK);
+                    DrawTriangle3D({x + p1x, y + top, z + p1z}, {x + p1x, y + bottom, z + p1z},
+                                   {x + p4x, y + top, z + p4z}, BLACK);
                 }
                 //Draw right eye
                 {
@@ -101,12 +112,63 @@ void EntityRenderer::render(World &world)
                     p1z -= zOffset * 0.65f;
                     p4z += zOffset * 0.2f;
 
-                    DrawTriangle3D({x + p4x, y + top, z + p4z}, {x + p1x, y + bottom, z + p1z}, {x + p4x, y + bottom, z + p4z}, BLACK);
-                    DrawTriangle3D({x + p1x, y + top, z + p1z}, {x + p1x, y + bottom, z + p1z}, {x + p4x, y + top, z + p4z}, BLACK);
+                    DrawTriangle3D({x + p4x, y + top, z + p4z}, {x + p1x, y + bottom, z + p1z},
+                                   {x + p4x, y + bottom, z + p4z}, BLACK);
+                    DrawTriangle3D({x + p1x, y + top, z + p1z}, {x + p1x, y + bottom, z + p1z},
+                                   {x + p4x, y + top, z + p4z}, BLACK);
 
                 }
             }
 
+        }
+        if (entity->getTypeId() == Food::TYPE_ID)
+        {
+            auto *food = dynamic_cast<Food *>(entity.get());
+
+            //Draw body
+            {
+                float x = food->getPosition().x;
+                float y = food->getPosition().y;
+                float z = food->getPosition().z;
+                float size = 0.3f;
+                float height = 0.5f;
+
+                float p1x = size * std::cos(food->getRotation());
+                float p1z = size * std::sin(food->getRotation());
+                float p2x = size * -std::sin(food->getRotation());
+                float p2z = size * std::cos(food->getRotation());
+                float p3x = size * -std::cos(food->getRotation());
+                float p3z = size * -std::sin(food->getRotation());
+                float p4x = size * std::sin(food->getRotation());
+                float p4z = size * -std::cos(food->getRotation());
+
+                auto foodColor = (Color) {255, 169, 0, 192};
+
+                DrawTriangle3D({x + p1x, y, z + p1z}, {x + p2x, y, z + p2z}, {x + p3x, y, z + p3z}, foodColor);
+                DrawTriangle3D({x + p1x, y, z + p1z}, {x + p3x, y, z + p3z}, {x + p4x, y, z + p4z}, foodColor);
+                DrawTriangle3D({x + p3x, y + height, z + p3z}, {x + p2x, y + height, z + p2z},
+                               {x + p1x, y + height, z + p1z}, foodColor);
+                DrawTriangle3D({x + p4x, y + height, z + p4z}, {x + p3x, y + height, z + p3z},
+                               {x + p1x, y + height, z + p1z}, foodColor);
+
+                DrawTriangle3D({x + p2x, y + height, z + p2z}, {x + p2x, y, z + p2z}, {x + p1x, y, z + p1z},
+                               foodColor);
+                DrawTriangle3D({x + p1x, y + height, z + p1z}, {x + p2x, y + height, z + p2z},
+                               {x + p1x, y, z + p1z}, foodColor);
+                DrawTriangle3D({x + p4x, y + height, z + p4z}, {x + p4x, y, z + p4z}, {x + p3x, y, z + p3z},
+                               foodColor);
+                DrawTriangle3D({x + p3x, y + height, z + p3z}, {x + p4x, y + height, z + p4z},
+                               {x + p3x, y, z + p3z}, foodColor);
+
+                DrawTriangle3D({x + p3x, y, z + p3z}, {x + p2x, y, z + p2z}, {x + p2x, y + height, z + p2z},
+                               foodColor);
+                DrawTriangle3D({x + p3x, y, z + p3z}, {x + p2x, y + height, z + p2z},
+                               {x + p3x, y + height, z + p3z}, foodColor);
+                DrawTriangle3D({x + p4x, y + height, z + p4z}, {x + p1x, y, z + p1z}, {x + p4x, y, z + p4z},
+                               foodColor);
+                DrawTriangle3D({x + p1x, y + height, z + p1z}, {x + p1x, y, z + p1z},
+                               {x + p4x, y + height, z + p4z}, foodColor);
+            }
         }
     }
 }

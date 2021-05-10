@@ -65,6 +65,7 @@ void GameClient::handleMouseEvent()
 
 void GameClient::handleKeyboardEvent()
 {
+    static const float movingSpeed = 0.15f;
     auto& keyboardListener = application->getKeyEventListener();
     auto* player = world->getPlayer();
     if(keyboardListener.isKeyDown(KEY_SPACE))
@@ -72,25 +73,21 @@ void GameClient::handleKeyboardEvent()
         if(player->canJump())
             player->jump();
     }
-//    if(keyboardListener.isKeyDown(KEY_LEFT_SHIFT))
-//    {
-//        player->setControlledSpeed({0, -0.1, 0});
-//    }
     if(keyboardListener.isKeyDown(KEY_W))
     {
-        player->setControlledSpeed({std::cos(player->getYaw()) * 0.1f, 0, std::sin(player->getYaw()) * 0.1f});
+        player->setControlledSpeed({std::cos(player->getYaw()) * movingSpeed, 0, std::sin(player->getYaw()) * movingSpeed});
     }
     if(keyboardListener.isKeyDown(KEY_S))
     {
-        player->setControlledSpeed({-std::cos(player->getYaw()) * 0.1f, 0, -std::sin(player->getYaw()) * 0.1f});
+        player->setControlledSpeed({-std::cos(player->getYaw()) * movingSpeed, 0, -std::sin(player->getYaw()) * movingSpeed});
     }
     if(keyboardListener.isKeyDown(KEY_D))
     {
-        player->setControlledSpeed({-std::sin(player->getYaw()) * 0.1f, 0, std::cos(player->getYaw()) * 0.1f});
+        player->setControlledSpeed({-std::sin(player->getYaw()) * movingSpeed, 0, std::cos(player->getYaw()) * movingSpeed});
     }
     if(keyboardListener.isKeyDown(KEY_A))
     {
-        player->setControlledSpeed({std::sin(player->getYaw()) * 0.1f, 0, -std::cos(player->getYaw()) * 0.1f});
+        player->setControlledSpeed({std::sin(player->getYaw()) * movingSpeed, 0, -std::cos(player->getYaw()) * movingSpeed});
     }
 }
 

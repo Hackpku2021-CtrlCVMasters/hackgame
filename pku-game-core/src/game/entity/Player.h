@@ -13,10 +13,18 @@ class Player : public Entity
 protected:
     float yaw, pitch;
     Vec3f controlledSpeed;
+    int score;
+    int health;
 public:
     explicit Player(World &);
 
     void moveYaw(float offset);
+
+    void setScore(int score);
+
+    int getHealth() const;
+
+    void setHealth(int health);
 
     void movePitch(float offset);
 
@@ -43,6 +51,10 @@ public:
     void jump();
 
     int getTypeId() const override;
+
+    int getScore() const;
+
+    void addScore(int score);
 
     static const int TYPE_ID = 0;
 };

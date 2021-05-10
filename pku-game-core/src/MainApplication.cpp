@@ -10,7 +10,7 @@ MainApplication::MainApplication()
 {
     screenHeight = 936;
     screenWidth = 1404;
-    windowName = "Demo Hack pku game";
+    windowName = "Slime Escape";
     gameClient = new GameClient(*this);
     renderEngine = new RenderEngine(*this);
     keyEventListener = new KeyEventListener(*this);

@@ -87,7 +87,7 @@ void Entity::gravityInfluencedFall()
 
 float Entity::getGravity() const
 {
-    return 0.005;
+    return 0.02;
 }
 
 void Entity::setPos(const Vec3f & v)

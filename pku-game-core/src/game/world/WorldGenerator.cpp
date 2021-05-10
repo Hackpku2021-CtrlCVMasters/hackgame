@@ -21,9 +21,7 @@ WorldGenerator::WorldGenerator(World &world, GameClient &client) :
 }
 
 WorldGenerator::~WorldGenerator()
-{
-
-}
+= default;
 
 void WorldGenerator::generate()
 {
@@ -32,6 +30,7 @@ void WorldGenerator::generate()
 
     Value value;
     std::ifstream("../config/world_data.json") >> value;
+    world->worldSize = value["size"].asInt();
     for(auto const& v: value["blocks"])
     {
         int x = v["pos"][0].asInt();
@@ -66,5 +65,4 @@ void WorldGenerator::generate()
         }
     }
     world->addPlayer(std::move(player));
-
 }
