@@ -54,9 +54,9 @@ void World::addPlayer(std::unique_ptr<Player> p)
 
 void World::setBlock(int x, int y, int z, std::unique_ptr<Block> block)
 {
-    if(x < -worldSize || x >= worldSize)
+    if (x < -worldSize || x >= worldSize)
         return;
-    if(z < -worldSize || z >= worldSize)
+    if (z < -worldSize || z >= worldSize)
         return;
     blocks[{x, y, z}] = std::move(block);
 }
@@ -106,6 +106,9 @@ void World::generateFood()
         int x = (rand() % (getWorldSize() * 2)) - getWorldSize();
         int y = (rand() % (getWorldSize() * 2)) - getWorldSize();
 
+        if (!isWalkable(x, y))
+            continue;
+
         int height = -1;
         for (int i = 50; i >= 0; --i)
         {
@@ -117,13 +120,11 @@ void World::generateFood()
         }
         if (height == -1)
             continue;
-        if (height <= 5)
-        {
-            generated = true;
-            auto food = std::make_unique<Food>(*this);
-            food->setPos({(float) x, (float) height + 1, (float) y});
-            addEntity(std::move(food));
-        }
+
+        generated = true;
+        auto food = std::make_unique<Food>(*this);
+        food->setPos({(float) x, (float) height + 1, (float) y});
+        addEntity(std::move(food));
     }
 }
 
@@ -147,7 +148,12 @@ int World::getTargetScore() const
     return 8;
 }
 
-bool World::isWalkable(int, int) const
+bool World::isWalkable(int x, int y) const
 {
+    for (auto const &p : walk)
+    {
+        if (p.first == x && p.second == y)
+            return true;
+    }
     return false;
 }

@@ -54,6 +54,14 @@ void WorldGenerator::generate()
         }
     }
 
+    for(auto const& v: value["walkable"])
+    {
+        int x = v[0].asInt();
+        int y = v[1].asInt();
+
+        world->walk.insert(std::pair<int, int>(x, y));
+    }
+
     auto player = std::make_unique<Player>(*world);
     player->setPos({0, 10.0f, 0});
     for(int i = 50; i >= 0; --i)

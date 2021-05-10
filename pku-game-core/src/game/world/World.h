@@ -22,6 +22,7 @@ class World
 private:
     std::set<std::unique_ptr<Entity> > entities;
     std::unordered_map<Vec3i, std::unique_ptr<Block> > blocks;
+    std::set<std::pair<int, int> > walk;
     Player* player;
     GameClient* gameClient;
     int worldSize{};
