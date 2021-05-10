@@ -76,3 +76,18 @@ MouseListener &MainApplication::getMouseListener()
 {
     return *mouseListener;
 }
+
+const std::string &MainApplication::getWindowName() const
+{
+    return windowName;
+}
+
+int MainApplication::getScreenWidth() const
+{
+    return screenWidth;
+}
+
+int MainApplication::getScreenHeight() const
+{
+    return screenHeight;
+}

@@ -54,6 +54,10 @@ void World::addPlayer(std::unique_ptr<Player> p)
 
 void World::setBlock(int x, int y, int z, std::unique_ptr<Block> block)
 {
+    if(x < -worldSize || x >= worldSize)
+        return;
+    if(z < -worldSize || z >= worldSize)
+        return;
     blocks[{x, y, z}] = std::move(block);
 }
 
@@ -141,4 +145,9 @@ void World::markForRemove(Entity *e)
 int World::getTargetScore() const
 {
     return 8;
+}
+
+bool World::isWalkable(int, int) const
+{
+    return false;
 }

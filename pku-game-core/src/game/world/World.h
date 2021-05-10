@@ -62,6 +62,8 @@ public:
     void markForRemove(Entity*);
 
     int getTargetScore() const;
+
+    bool isWalkable(int, int) const;
 };
 
 

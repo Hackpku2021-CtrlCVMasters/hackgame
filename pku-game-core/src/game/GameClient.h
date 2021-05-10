@@ -13,6 +13,7 @@ class GameClient
 private:
     MainApplication* application;
     World* world;
+    bool paused;
 public:
     explicit GameClient(MainApplication&);
     ~GameClient();
@@ -21,6 +22,9 @@ public:
     void tick();
 
     World& getWorld();
+
+    bool isGamePaused() const;
+    void setGamePaused(bool);
 
 private:
     void handleMouseEvent();

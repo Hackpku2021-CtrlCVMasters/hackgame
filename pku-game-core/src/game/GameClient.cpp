@@ -20,6 +20,7 @@ GameClient::GameClient(MainApplication & app)
 {
     application = &app;
     world = nullptr;
+    paused = false;
 }
 
 GameClient::~GameClient()
@@ -39,7 +40,13 @@ void GameClient::tick()
     handleMouseEvent();
     handleKeyboardEvent();
 
-    world->tick();
+    if(!paused)
+        world->tick();
+
+    if(world->getPlayer()->getHealth() <= 0)
+        setGamePaused(true);
+    if(world->getPlayer()->getScore() >= world->getTargetScore())
+        setGamePaused(true);
 }
 
 World &GameClient::getWorld()
@@ -89,5 +96,15 @@ void GameClient::handleKeyboardEvent()
     {
         player->setControlledSpeed({std::sin(player->getYaw()) * movingSpeed, 0, -std::cos(player->getYaw()) * movingSpeed});
     }
+}
+
+bool GameClient::isGamePaused() const
+{
+    return paused;
+}
+
+void GameClient::setGamePaused(bool p)
+{
+    paused = p;
 }
 

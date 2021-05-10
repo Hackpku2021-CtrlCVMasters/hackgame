@@ -28,6 +28,13 @@ public:
     RenderEngine& getRenderEngine();
     KeyEventListener& getKeyEventListener();
     MouseListener& getMouseListener();
+
+    int getScreenWidth() const;
+
+    int getScreenHeight() const;
+
+    const std::string &getWindowName() const;
+
 private:
     void renderTick();
     void logicTick();

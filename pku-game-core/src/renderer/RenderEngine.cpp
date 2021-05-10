@@ -69,7 +69,8 @@ void RenderEngine::render()
 
     EndMode3D();
 
-    uiRenderer->render(world);
+    uiRenderer->render(world, app->getGameClient(), *app);
+
 
     EndDrawing();
 }

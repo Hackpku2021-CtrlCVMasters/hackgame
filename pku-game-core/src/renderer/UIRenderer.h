@@ -7,11 +7,13 @@
 
 #include "BaseRenderer.h"
 
+class GameClient;
+class MainApplication;
 class UIRenderer : public BaseRenderer
 {
 public:
     explicit UIRenderer(RenderEngine&);
-    void render(World &world);
+    void render(World &world, GameClient&, MainApplication&);
 };
 
 
